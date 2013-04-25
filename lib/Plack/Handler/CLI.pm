@@ -1,8 +1,8 @@
 package Plack::Handler::CLI;
 use 5.008_001;
-use Any::Moose;
+use Mouse;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use IO::Handle  (); # autoflush
 use Plack::Util ();
@@ -174,7 +174,7 @@ sub _handle_response {
     return;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable();
 __END__
 
@@ -184,7 +184,7 @@ Plack::Handler::CLI - Command line interface to PSGI applications
 
 =head1 VERSION
 
-This document describes Plack::Handler::CLI version 0.04.
+This document describes Plack::Handler::CLI version 0.05.
 
 =head1 SYNOPSIS
 
@@ -241,14 +241,14 @@ for PSGI applications.
 
 =head1 INTERFACE
 
-=head2 B<< Plack::Handler::CLI->new(%options) : CLI >>
+=head2 C<< Plack::Handler::CLI->new(%options) >>
 
 Creates a Plack handler that implements a command line interface.
 
 PSGI headers will be printed by default, but you can suppress them
 by C<< need_headers => 0 >>.
 
-=head2 B<< $cli->run(\&psgi_app, @argv) : Void >>
+=head2 C<< $cli->run(\&psgi_app, @argv) : Void >>
 
 Runs I<&psgi_app> with I<@argv>.
 
